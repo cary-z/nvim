@@ -1,4 +1,4 @@
-local config = require "lazyvim.config"
+local config = require("lazyvim.config")
 return {
   {
     -- add tsserver and setup with typescript.nvim instead of lspconfig
@@ -35,42 +35,60 @@ return {
     },
     config = function()
       -- 配置 tsserver
-      require('lspconfig').tsserver.setup {
-        cmd = { "/Users/admin/Library/Caches/fnm_multishells/6048_1723170588197/bin/typescript-language-server", "--stdio" },
+      require("lspconfig").tsserver.setup({
         on_attach = function(client, bufnr)
-          local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+          local function buf_set_keymap(...)
+            vim.api.nvim_buf_set_keymap(bufnr, ...)
+          end
           local opts = { noremap = true, silent = true }
 
           -- 设置按键绑定，例如：
-          buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-          buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+          buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
+          buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
         end,
         flags = {
           debounce_text_changes = 150,
         },
         filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-        root_dir = function() return vim.loop.cwd() end,
-      }
-    end,
-    config = function()
+        root_dir = function()
+          return vim.loop.cwd()
+        end,
+      })
+      -- 配置 ESLint LSP
+      require("lspconfig").eslint.setup({
+        settings = {
+          eslint = {
+            enable = true,
+            packageManager = "npm", -- 这里可以是 npm 或其他包管理器
+            autoFixOnSave = false,
+            options = {
+              cache = true,
+              cacheLocation = ".eslintcache",
+            },
+          },
+        },
+      })
       -- 配置 Volar LSP
-      require('lspconfig').volar.setup {
-        cmd = { "/Users/admin/Library/Caches/fnm_multishells/6048_1723170588197/bin/vue-language-server", "--stdio" },
+      require("lspconfig").volar.setup({
         on_attach = function(client, bufnr)
-          local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+          local function buf_set_keymap(...)
+            vim.api.nvim_buf_set_keymap(bufnr, ...)
+          end
           local opts = { noremap = true, silent = true }
 
           -- 设置按键绑定，例如：
-          buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-          buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+          buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
+          buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
         end,
         flags = {
           debounce_text_changes = 150,
         },
-        filetypes = { 'vue' },
-        root_dir = function() return vim.loop.cwd() end,
-      }
-    end
+        filetypes = { "vue" },
+        root_dir = function()
+          return vim.loop.cwd()
+        end,
+      })
+    end,
   },
 
   -- for typescript, LazyVim also includes extra specs to properly setup lspconfig,

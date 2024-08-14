@@ -10,3 +10,21 @@ vim.opt.tabstop = 2 -- number of visual spaces per TAB
 vim.opt.softtabstop = 2 -- number of spacesin tab when editing
 vim.opt.shiftwidth = 2 -- insert 4 spaces on a tab
 vim.opt.expandtab = true -- tabs are spaces, mainly because of python
+
+-- 配置诊断信息的显示方式
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = '●', -- 可以是 '●', '▎', 'x'
+    spacing = 4,
+  },
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+  float = {
+    border = 'rounded',
+    source = 'always',
+    header = '',
+    prefix = '',
+  },
+})

@@ -2,14 +2,14 @@
     "Console log": {
         "prefix": "lr",
         "body": [
-            "console.log('\x1B[31m%s\x1B[0m', ${1:message}));"
+            "console.log('\\u001B[31m%s\\u001B[0m', ${1:message});"
         ],
         "description": "Log output to console"
     },
     "Console log JSON": {
         "prefix": "lrj",
         "body": [
-            "console.log('\x1B[31m%s\x1B[0m', JSON.stringify(${1:message}));"
+            "console.log('\\u001B[31m%s\\u001B[0m', JSON.stringify(${1:message}));"
         ],
         "description": "Log output to console"
     }
