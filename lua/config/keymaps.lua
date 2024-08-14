@@ -22,6 +22,8 @@ vim.keymap.set("n", "<C-v>", "<C-w>v", opts)
 vim.keymap.set("n", "<C-g>", "<C-w>s", opts)
 -- vim.keymap.set("n", "<C-w>", "<C-w>w", opts)
 
+vim.keymap.set('n', 'cp', ':<C-U>:normal viwvpgv"mx<cr>',opts)
+
 -----------------
 -- Insert mode --
 -----------------
