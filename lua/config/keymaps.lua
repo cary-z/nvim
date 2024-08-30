@@ -36,6 +36,12 @@ vim.keymap.set("n", "cp", ':<C-U>:normal viwvpgv"mx<cr>', opts)
 vim.keymap.set("n", "tt", function()
   LazyVim.terminal()
 end, { desc = "Terminal (cwd)" })
+-- 全局搜索文件名
+vim.keymap.set('n', 'ff', ':Telescope find_files cwd=<directory><CR>', opts)
+-- 全局搜索单词
+vim.keymap.set('n', 'fw', ':Telescope grep_string<CR>', opts)
+-- 全局搜索字段
+vim.keymap.set('n', 'fg', ':Telescope live_grep<CR>', opts)
 -----------------
 -- Insert mode --
 -----------------
