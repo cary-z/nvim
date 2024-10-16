@@ -1,4 +1,9 @@
 {
+  "Console log debug": {
+    "prefix": "log",
+    "body": ["console.log('debugger 🐛 ', ${1:message});"],
+    "description": "Log output to console"
+  },
   "Console log": {
     "prefix": "lr",
     "body": ["console.log('\\u001B[31m%s\\u001B[0m', ${1:message});"],
