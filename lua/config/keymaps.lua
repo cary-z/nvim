@@ -32,6 +32,8 @@ vim.keymap.set("n", "<C-c>", "<C-w>c", opts)
 
 -- 粘贴已复制内容
 vim.keymap.set("n", "cp", ':<C-U>:normal viwvpgv"mx<cr>', opts)
+-- 快速搜索当前单词
+vim.keymap.set("n", "ss", 'viw*<Esc>', opts)
 -- 打开终端快捷键
 vim.keymap.set("n", "tt", function()
   LazyVim.terminal()
