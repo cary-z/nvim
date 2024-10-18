@@ -8,6 +8,30 @@ return {
           ["<CR>"] = "open", -- 默认是 Enter 键
           ["o"] = "open", -- 你可以添加新的键映射，比如将 'o' 键映射为 'open'
           ["O"] = "open_split", -- 示例：将 'O' 键映射为在分割窗口中打开
+          -- 复制文件名
+          ["y"] = function(state)
+            local node = state.tree:get_node()
+            local filepath = node:get_id()
+            local filename = vim.fn.fnamemodify(filepath, ":t") -- 提取文件名
+            vim.fn.setreg("+", filename) -- 将文件名复制到系统剪贴板
+            print("Copied to clipboard: " .. filename)
+          end,
+          -- 复制相对路径
+          ["<C-y>"] = function(state)
+            local node = state.tree:get_node()
+            local filepath = node:get_id()
+            local project_root = vim.fn.getcwd() -- 获取当前项目的根目录
+            local relative_path = vim.fn.fnamemodify(filepath, ":." .. project_root)
+            vim.fn.setreg("+", relative_path) -- 将相对路径复制到系统剪贴板
+            print("Copied to clipboard: " .. relative_path)
+          end,
+          -- 复制绝对路径
+          ["Y"] = function(state)
+            local node = state.tree:get_node()
+            local filepath = node:get_id()
+            vim.fn.setreg("+", filepath) -- 将文件路径复制到系统剪贴板
+            print("Copied to clipboard: " .. filepath)
+          end,
           -- 你可以添加更多的自定义键映射
         },
       },
