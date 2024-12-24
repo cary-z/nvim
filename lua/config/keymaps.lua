@@ -48,6 +48,7 @@ vim.keymap.set("n", "fw", ":Telescope grep_string<CR>", opts)
 vim.keymap.set("n", "fg", ":Telescope live_grep<CR>", opts)
 -- 使用lspsaga的悬浮文档
 vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>")
+-- 使用lspsaga的code action
 vim.keymap.set("n", "ca", "<cmd>Lspsaga code_action<CR>")
 -----------------
 -- Insert mode --
