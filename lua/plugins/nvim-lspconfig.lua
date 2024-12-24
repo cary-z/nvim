@@ -44,7 +44,7 @@ return {
 
           -- 设置按键绑定，例如：
           buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
-          buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
+          -- buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
         end,
         flags = {
           debounce_text_changes = 150,

@@ -33,17 +33,22 @@ vim.keymap.set("n", "<C-c>", "<C-w>c", opts)
 -- 粘贴已复制内容
 vim.keymap.set("n", "cp", ':<C-U>:normal viwvpgv"mx<cr>', opts)
 -- 快速搜索当前单词
-vim.keymap.set("n", "ss", 'viw*<Esc>', opts)
--- 打开终端快捷键
-vim.keymap.set("n", "tt", function()
+vim.keymap.set("n", "ss", "viw*<Esc>", opts)
+-- 打开终端键
+vim.keymap.set("n", "ty", function()
   LazyVim.terminal()
 end, { desc = "Terminal (cwd)" })
+-- 打开lspsaga终端键
+vim.keymap.set("n", "tt", ":Lspsaga term_toggle<CR>", opts)
 -- 全局搜索文件名
-vim.keymap.set('n', 'ff', ':Telescope find_files cwd=<directory><CR>', opts)
+vim.keymap.set("n", "ff", ":Telescope find_files cwd=<directory><CR>", opts)
 -- 全局搜索单词
-vim.keymap.set('n', 'fw', ':Telescope grep_string<CR>', opts)
+vim.keymap.set("n", "fw", ":Telescope grep_string<CR>", opts)
 -- 全局搜索字段
-vim.keymap.set('n', 'fg', ':Telescope live_grep<CR>', opts)
+vim.keymap.set("n", "fg", ":Telescope live_grep<CR>", opts)
+-- 使用lspsaga的悬浮文档
+vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>")
+vim.keymap.set("n", "ca", "<cmd>Lspsaga code_action<CR>")
 -----------------
 -- Insert mode --
 -----------------
