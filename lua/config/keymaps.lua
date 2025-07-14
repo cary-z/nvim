@@ -41,11 +41,11 @@ end, { desc = "Terminal (cwd)" })
 -- 打开lspsaga终端键
 vim.keymap.set("n", "tt", ":Lspsaga term_toggle<CR>", opts)
 -- 全局搜索文件名
-vim.keymap.set("n", "ff", ":Telescope find_files cwd=<directory><CR>", opts)
+-- vim.keymap.set("n", "ff", ":Telescope find_files cwd=<directory><CR>", opts)
 -- 全局搜索单词
-vim.keymap.set("n", "fw", ":Telescope grep_string<CR>", opts)
+-- vim.keymap.set("n", "fw", ":Telescope grep_string<CR>", opts)
 -- 全局搜索字段
-vim.keymap.set("n", "fg", ":Telescope live_grep<CR>", opts)
+-- vim.keymap.set("n", "fg", ":Telescope live_grep<CR>", opts)
 -- 使用lspsaga的悬浮文档
 vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>")
 -- 使用lspsaga的code action
