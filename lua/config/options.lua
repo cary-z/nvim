@@ -28,3 +28,5 @@ vim.diagnostic.config({
     prefix = '',
   },
 })
+
+vim.g.snacks_animate = false
