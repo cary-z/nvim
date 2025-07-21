@@ -1,7 +1,7 @@
 {
   "Console log debug": {
     "prefix": "lg",
-    "body": ["console.log('debugger 🐛 ', ${1:message});"],
+    "body": ["console.log('debugger 🕹️ ', ${1:message});"],
     "description": "Log output to console"
   },
   "Console log": {
