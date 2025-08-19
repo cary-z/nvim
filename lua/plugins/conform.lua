@@ -12,6 +12,14 @@ return {
       mode = "",
       desc = "Format buffer",
     },
+    {
+      "<leader>F",
+      function()
+        vim.cmd("!npx prettier-eslint --write %")
+        vim.cmd("edit!") -- 刷新 buffer
+      end,
+      desc = "Format with prettier-eslint",
+    },
   },
   -- This will provide type hinting with LuaLS
   ---@module "conform"
