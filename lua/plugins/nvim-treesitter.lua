@@ -23,5 +23,4 @@ return {
     enable = true,
     enable_autocmd = false, -- 让 Comment.nvim 自己控制，不依赖 autocmd
   },
-},
-
+}
