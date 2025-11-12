@@ -46,8 +46,15 @@ vim.keymap.set("n", "tt", ":Lspsaga term_toggle<CR>", opts)
 -- vim.keymap.set("n", "fw", ":Telescope grep_string<CR>", opts)
 -- 全局搜索字段
 -- vim.keymap.set("n", "fg", ":Telescope live_grep<CR>", opts)
--- 使用lspsaga的悬浮文档
-vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>")
+-- 使用lspsaga的悬浮文档（仅在 LSP 客户端存在时）
+vim.keymap.set("n", "K", function()
+  local clients = vim.lsp.get_active_clients({ bufnr = 0 })
+  if #clients > 0 then
+    vim.cmd("Lspsaga hover_doc")
+  else
+    vim.lsp.buf.hover()
+  end
+end, { desc = "Hover Documentation" })
 -- 使用lspsaga的code action
 vim.keymap.set("n", "ca", "<cmd>Lspsaga code_action<CR>")
 -----------------

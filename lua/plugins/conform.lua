@@ -31,7 +31,7 @@ return {
       python = { "isort", "black" },
       javascript = { "eslint_d" },
       typescript = { "eslint_d" },
-      vue = { "eslint_d" },
+      vue = { "prettierd", "prettier", stop_after_first = true },
       css = { "prettierd", "prettier", stop_after_first = true },
       html = { "prettierd", "prettier", stop_after_first = true },
       json = { "prettierd", "prettier", stop_after_first = true },
