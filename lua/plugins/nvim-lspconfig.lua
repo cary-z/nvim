@@ -156,7 +156,11 @@ return {
       end
 
       lspconfig.vtsls.setup({
-        on_attach = with_buffer_keymaps,
+        on_attach = function(client, bufnr)
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentRangeFormattingProvider = false
+          with_buffer_keymaps(client, bufnr)
+        end,
         settings = vtsls_settings,
         filetypes = {
           "javascript",
