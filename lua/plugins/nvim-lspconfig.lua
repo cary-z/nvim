@@ -12,7 +12,7 @@ return {
     config = function()
       local lspconfig = require("lspconfig")
       local util = require("lspconfig.util")
-      local mason_registry = require("mason-registry")
+      local mason_registry_ok, mason_registry = pcall(require, "mason-registry")
 
       local function with_buffer_keymaps(_, bufnr)
         local map = function(mode, lhs, rhs, desc)
@@ -29,11 +29,13 @@ return {
             return project_ts
           end
         end
-        local ok, tsserver_pkg = pcall(mason_registry.get_package, "typescript-language-server")
-        if ok then
-          local ts_path = util.path.join(tsserver_pkg:get_install_path(), "node_modules", "typescript", "lib")
-          if vim.loop.fs_stat(ts_path) then
-            return ts_path
+        if mason_registry_ok then
+          local ok, tsserver_pkg = pcall(mason_registry.get_package, "typescript-language-server")
+          if ok then
+            local ts_path = util.path.join(tsserver_pkg:get_install_path(), "node_modules", "typescript", "lib")
+            if vim.loop.fs_stat(ts_path) then
+              return ts_path
+            end
           end
         end
         local global_ts = vim.fn.expand("~/.npm/lib/node_modules/typescript/lib")
@@ -44,12 +46,22 @@ return {
       end
 
       local function get_vue_typescript_plugin()
+        if not mason_registry_ok then
+          return nil
+        end
         local ok, vue_pkg = pcall(mason_registry.get_package, "vue-language-server")
-        if not ok then
+        if not ok or not vue_pkg then
+          return nil
+        end
+        if type(vue_pkg.get_install_path) ~= "function" then
+          return nil
+        end
+        local install_path = vue_pkg:get_install_path()
+        if not install_path then
           return nil
         end
         local language_server_path = util.path.join(
-          vue_pkg:get_install_path(),
+          install_path,
           "node_modules",
           "@vue",
           "language-server"
@@ -96,10 +108,10 @@ return {
             vim.list_extend(candidates, ts_ls_clients)
 
             if #candidates == 0 then
-              vim.notify(
-                "[volar] could not find vtsls/ts_ls client for TypeScript features",
-                vim.log.levels.ERROR
-              )
+              -- vim.notify(
+              --   "[volar] could not find vtsls/ts_ls client for TypeScript features",
+              --   vim.log.levels.ERROR
+              -- )
               return
             end
 
@@ -183,6 +195,11 @@ return {
             new_config.settings.typescript.tsdk = tsdk
           end
         end,
+      })
+
+      -- Tailwind CSS LSP
+      lspconfig.tailwindcss.setup({
+        on_attach = with_buffer_keymaps,
       })
     end,
   },

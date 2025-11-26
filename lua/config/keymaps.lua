@@ -50,7 +50,7 @@ vim.keymap.set("n", "tt", ":Lspsaga term_toggle<CR>", opts)
 vim.keymap.set("n", "K", function()
   local clients = vim.lsp.get_active_clients({ bufnr = 0 })
   if #clients > 0 then
-    vim.cmd("Lspsaga hover_doc")
+    vim.cmd("Lspsaga hover_doc ++silent")
   else
     vim.lsp.buf.hover()
   end
