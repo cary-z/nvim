@@ -9,7 +9,7 @@ local opts = {
 }
 
 -- Require key sequences (like "jk") to be completed within 70ms
-vim.opt.timeoutlen = 150
+vim.opt.timeoutlen = 200
 
 -----------------
 -- Normal mode --
