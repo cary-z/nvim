@@ -8,6 +8,9 @@ local opts = {
   silent = true, -- do not show message
 }
 
+-- Require key sequences (like "jk") to be completed within 70ms
+vim.opt.timeoutlen = 150
+
 -----------------
 -- Normal mode --
 -----------------
@@ -67,4 +70,4 @@ vim.keymap.set("i", "jk", "<Esc>", opts)
 -- Visual mode --
 -----------------
 
-vim.keymap.set("v", "jk", "<Esc>", opts)
+-- vim.keymap.set("v", "jk", "<Esc>", opts)
