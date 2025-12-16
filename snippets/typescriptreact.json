@@ -1,7 +1,14 @@
 {
   "Console log debug": {
     "prefix": "lg",
-    "body": ["console.log('debugger 🕹️ ', ${1:message});"],
+    "body": [
+      "console.log(",
+      "  '%cdebugger%c',",
+      "  'background:#ff4d4f;color:#fff;border-radius:999px;padding:2px 8px;font-weight:700;',",
+      "  'color:inherit;',",
+      "  ${1:message}",
+      ");"
+    ],
     "description": "Log output to console"
   },
   "Console log": {
