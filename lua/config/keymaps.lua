@@ -49,6 +49,10 @@ vim.keymap.set("n", "tt", ":Lspsaga term_toggle<CR>", opts)
 -- vim.keymap.set("n", "fw", ":Telescope grep_string<CR>", opts)
 -- 全局搜索字段
 -- vim.keymap.set("n", "fg", ":Telescope live_grep<CR>", opts)
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Goto Definition" })
+vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Goto Declaration" })
+vim.keymap.set("n", "gI", vim.lsp.buf.implementation, { desc = "Goto Implementation" })
+vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "References" })
 -- 使用lspsaga的悬浮文档（仅在 LSP 客户端存在时）
 vim.keymap.set("n", "K", function()
   local clients = vim.lsp.get_active_clients({ bufnr = 0 })
